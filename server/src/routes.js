@@ -19,6 +19,4 @@ routes.use(authMiddleware);
 // Retorna os dados do usuário
 routes.get('/user', UserController.index);
 
-routes.get('/', (req, res) => res.send('Hello api'));
-
 export default routes;
