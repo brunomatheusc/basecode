@@ -4,8 +4,6 @@ import User from '../models/User';
 class UserController {
     async index (req, res) {
         try {
-            const { authorization } = req.headers;
-
             const user = await User.findOne({ where: { id: req.userId }})
 
             const { id, name, email } = user;
@@ -36,7 +34,8 @@ class UserController {
     
             const { email, password, name } = req.body;
     
-            const user = await User.create({ name, email, password });
+            const user = await User.create({ name, email, password, active = false });
+
             return res.json(user);
         } catch (error) {
             return res.status(500).json({ error: true });
